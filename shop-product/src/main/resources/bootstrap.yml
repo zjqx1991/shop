@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: stk-product
+  cloud:
+    nacos:
+      config:
+        namespace: 918a3699-5a2b-48dd-830a-4617a6e952cb
+        server-addr: 123.57.102.7:8848
+        file-extension: yaml
+        extension-configs:
+          - dataId: datasource.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: systemConfig.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: mybatisPlus.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: redisConfig.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: cacheConfig.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: threadPoolCongif.yaml
+            group: dev_GROUP
+            refresh: true
+          - dataId: sentinel.yaml
+            group: dev_GROUP
+            refresh: true
+
+      discovery:
+        server-addr: 123.57.102.7:8848
+
+
+
+
