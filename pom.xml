@@ -12,7 +12,6 @@
     <modules>
         <module>shop-common</module>
         <module>shop-product</module>
-        <module>renren-generator</module>
     </modules>
 
 
