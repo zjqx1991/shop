@@ -14,9 +14,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CodeGenerator {
 
@@ -40,6 +38,7 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
+
 
         // 项目名称
         String projectName = "shop-product";
