@@ -1,22 +1,22 @@
 spring:
   application:
-    name: shop-product
+    name: shop-gateway
   cloud:
     nacos:
       discovery:
+        namespace: 2d7ff916-be5e-4382-8fbf-54e181a49e9f
         server-addr: 192.168.50.100:8848
-        namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0
       config:
-        namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0
+        namespace: 2d7ff916-be5e-4382-8fbf-54e181a49e9f
         server-addr: 192.168.50.100:8848
         file-extension: yaml
         extension-configs:
           - dataId: system.yaml
             group: dev
             refresh: true
-          - dataId: datasource.yaml
-            group: dev
-            refresh: true
+#          - dataId: datasource.yaml
+#            group: dev
+#            refresh: true
 #          - dataId: mybatisPlus.yaml
 #            group: dev_GROUP
 #            refresh: true

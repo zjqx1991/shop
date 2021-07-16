@@ -13,19 +13,11 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>com.lkty.shop</groupId>
             <artifactId>shop-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <!-- openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>
