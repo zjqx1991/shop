@@ -1,25 +1,22 @@
 spring:
   application:
-    name: shop-gateway
+    name: shop-renren
   cloud:
     nacos:
       discovery:
-        namespace: 2d7ff916-be5e-4382-8fbf-54e181a49e9f
+        namespace: f49e216c-25b6-4821-8a3f-e0be7c7a1610
         server-addr: 192.168.50.100:8848
       config:
-        namespace: 2d7ff916-be5e-4382-8fbf-54e181a49e9f
+        namespace: f49e216c-25b6-4821-8a3f-e0be7c7a1610
         server-addr: 192.168.50.100:8848
         file-extension: yaml
         extension-configs:
           - dataId: system.yaml
             group: dev
             refresh: true
-          - dataId: router.yaml
+          - dataId: datasource.yaml
             group: dev
             refresh: true
-#          - dataId: datasource.yaml
-#            group: dev
-#            refresh: true
 #          - dataId: mybatisPlus.yaml
 #            group: dev_GROUP
 #            refresh: true
@@ -35,5 +32,3 @@ spring:
 #          - dataId: sentinel.yaml
 #            group: dev_GROUP
 #            refresh: true
-
-
