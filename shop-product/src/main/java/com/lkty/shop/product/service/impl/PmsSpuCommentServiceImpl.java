@@ -1,6 +1,5 @@
 package com.lkty.shop.product.service.impl;
 
-import com.lkty.shop.common.po.product.po.PmsSpuComment;
 import com.lkty.shop.product.mapper.IPmsSpuCommentMapper;
 import com.lkty.shop.product.service.IPmsSpuCommentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

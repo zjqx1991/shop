@@ -1,6 +1,5 @@
 package com.lkty.shop.product.service.impl;
 
-import com.lkty.shop.common.po.product.po.PmsCategoryBrandRelation;
 import com.lkty.shop.product.mapper.IPmsCategoryBrandRelationMapper;
 import com.lkty.shop.product.service.IPmsCategoryBrandRelationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

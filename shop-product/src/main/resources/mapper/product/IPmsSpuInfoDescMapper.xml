@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsSpuInfoDesc">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="decript" property="decript" />
         <result column="remarks" property="remarks" />
         <result column="create_by" property="createBy" />
@@ -17,8 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        decript, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, decript, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

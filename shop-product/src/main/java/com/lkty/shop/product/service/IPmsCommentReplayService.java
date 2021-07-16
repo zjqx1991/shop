@@ -1,6 +1,5 @@
 package com.lkty.shop.product.service;
 
-import com.lkty.shop.common.po.product.po.PmsCommentReplay;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

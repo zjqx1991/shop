@@ -1,6 +1,5 @@
 package com.lkty.shop.product.mapper;
 
-import com.lkty.shop.common.po.product.po.PmsAttrAttrgroupRelation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

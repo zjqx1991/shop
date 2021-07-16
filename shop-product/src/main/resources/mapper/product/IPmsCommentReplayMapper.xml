@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsCommentReplay">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="comment_id" property="commentId" />
         <result column="reply_id" property="replyId" />
         <result column="remarks" property="remarks" />
@@ -18,8 +18,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        comment_id, reply_id, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, comment_id, reply_id, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsAttrAttrgroupRelation">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="attr_id" property="attrId" />
         <result column="attr_group_id" property="attrGroupId" />
         <result column="attr_sort" property="attrSort" />
@@ -19,8 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        attr_id, attr_group_id, attr_sort, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, attr_id, attr_group_id, attr_sort, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

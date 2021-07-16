@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsCategoryBrandRelation">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="brand_id" property="brandId" />
         <result column="catelog_id" property="catelogId" />
         <result column="brand_name" property="brandName" />
@@ -20,8 +20,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        brand_id, catelog_id, brand_name, catelog_name, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, brand_id, catelog_id, brand_name, catelog_name, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

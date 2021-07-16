@@ -1,6 +1,5 @@
 package com.lkty.shop.product.service;
 
-import com.lkty.shop.common.po.product.po.PmsBrand;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

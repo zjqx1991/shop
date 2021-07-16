@@ -1,0 +1,16 @@
+package com.lkty.shop.product.service;
+
+import com.lkty.shop.common.po.product.po.SpuInfo;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * <p>
+ * spu信息 服务类
+ * </p>
+ *
+ * @author Raven
+ * @since 2021-07-16
+ */
+public interface ISpuInfoService extends IService<SpuInfo> {
+
+}

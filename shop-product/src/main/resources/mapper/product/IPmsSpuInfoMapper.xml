@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsSpuInfo">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="spu_name" property="spuName" />
         <result column="spu_description" property="spuDescription" />
         <result column="catalog_id" property="catalogId" />
@@ -22,8 +22,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        spu_name, spu_description, catalog_id, brand_id, weight, publish_status, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, spu_name, spu_description, catalog_id, brand_id, weight, publish_status, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

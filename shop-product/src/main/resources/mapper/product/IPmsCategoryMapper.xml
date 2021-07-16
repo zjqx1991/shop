@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsCategory">
-        <result column="id" property="id" />
+        <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="parent_cid" property="parentCid" />
         <result column="cat_level" property="catLevel" />
@@ -24,8 +24,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        name, parent_cid, cat_level, show_status, sort, icon, product_unit, product_count, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, name, parent_cid, cat_level, show_status, sort, icon, product_unit, product_count, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>

@@ -12,10 +12,15 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.lkty.shop.common.base.LKTYBasePojo;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
+/**
+ * product:
+ * pms_attr,pms_attr_group,pms_attr_attrgroup_relation,pms_brand,pms_category,pms_category_brand_relation,pms_comment_replay,pms_product_attr_value,pms_sku_images,pms_sku_info,pms_sku_sale_attr_value,pms_spu_comment,pms_spu_images,pms_spu_info,pms_spu_info_desc
+ */
 public class GeneratorMain {
 
     /**
@@ -43,6 +48,7 @@ public class GeneratorMain {
         // 项目名称
         String projectName = "shop-product";
         String dbName = "shop_pms";
+        String table_Prefix = "pms_";
 
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -74,7 +80,7 @@ public class GeneratorMain {
         //设置时间类型Date
         gc.setDateType(DateType.ONLY_DATE);
         //主键策略
-//        gc.setIdType(IdType.ID_WORKER_STR);
+        gc.setIdType(IdType.ASSIGN_ID);
         mpg.setGlobalConfig(gc);
 
 
@@ -150,10 +156,11 @@ public class GeneratorMain {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-//        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
+        strategy.setTablePrefix(table_Prefix);
         List<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(new TableFill("version", FieldFill.INSERT));
         tableFills.add(new TableFill("receive_time", FieldFill.INSERT));
         tableFills.add(new TableFill("create_by", FieldFill.INSERT));
         tableFills.add(new TableFill("create_time", FieldFill.INSERT));
@@ -161,11 +168,13 @@ public class GeneratorMain {
         tableFills.add(new TableFill("update_time", FieldFill.INSERT_UPDATE));
         strategy.setTableFillList(tableFills);
         strategy.setLogicDeleteFieldName("del_flag");
+        strategy.setVersionFieldName("version");
 
         // 公共父类
+//        strategy.setSuperEntityClass(LKTYBasePojo.class);
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id");
+//        strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

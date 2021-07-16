@@ -3,8 +3,8 @@
 <mapper namespace="com.lkty.shop.product.mapper.IPmsAttrMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.lkty.shop.common.po.product.po.PmsAttr">
-        <result column="id" property="id" />
+    <resultMap id="BaseResultMap" type="com.lkty.shop.product.entity.PmsAttr">
+        <id column="id" property="id" />
         <result column="attr_name" property="attrName" />
         <result column="search_type" property="searchType" />
         <result column="icon" property="icon" />
@@ -24,8 +24,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
-        attr_name, search_type, icon, value_select, attr_type, enable, catelog_id, show_desc, remarks, create_by, create_time, update_by, update_time, del_flag, version
+        id, attr_name, search_type, icon, value_select, attr_type, enable, catelog_id, show_desc, remarks, create_by, create_time, update_by, update_time, del_flag, version
     </sql>
 
 </mapper>
