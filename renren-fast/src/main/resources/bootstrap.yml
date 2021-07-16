@@ -4,7 +4,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        namespace: f49e216c-25b6-4821-8a3f-e0be7c7a1610
+#        namespace: f49e216c-25b6-4821-8a3f-e0be7c7a1610 注册中心如果也隔离，这样就彼此无法发现 503
         server-addr: 192.168.50.100:8848
       config:
         namespace: f49e216c-25b6-4821-8a3f-e0be7c7a1610
