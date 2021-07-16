@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
-public class CodeGenerator {
+public class GeneratorMain {
 
     /**
      * <p>
@@ -42,6 +42,7 @@ public class CodeGenerator {
 
         // 项目名称
         String projectName = "shop-product";
+        String dbName = "shop_pms";
 
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -79,7 +80,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.50.100:3306/shop_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://192.168.50.100:3306/" + dbName + "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
