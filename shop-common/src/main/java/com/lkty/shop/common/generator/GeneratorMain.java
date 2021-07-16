@@ -64,7 +64,7 @@ public class GeneratorMain {
         gc.setServiceName("I%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setMapperName("I%sMapper");
-        gc.setXmlName("I%sMapper");
+//        gc.setXmlName("I%sMapper");
         gc.setFileOverride(true);
         //实体属性 Swagger2 注解
         gc.setSwagger2(true);

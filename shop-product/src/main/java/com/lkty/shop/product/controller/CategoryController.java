@@ -1,9 +1,16 @@
 package com.lkty.shop.product.controller;
 
 
+import com.lkty.shop.api.product.ICategoryApi;
+import com.lkty.shop.common.po.product.po.Category;
+import com.lkty.shop.common.utils.R;
+import com.lkty.shop.product.service.ICategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,7 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-07-16
  */
 @RestController
-@RequestMapping("/product/category")
-public class CategoryController {
+public class CategoryController implements ICategoryApi {
 
+    @Autowired
+    private ICategoryService categoryService;
+
+    /**
+     * 获取品牌三级分类列表树
+     */
+    @Override
+    public R fetchCategoryListTrees() {
+        List<Category> categoryList = this.categoryService.fetchCategoryListTrees();
+        return R.ok().put(R.DATA_KEY, categoryList);
+    }
 }

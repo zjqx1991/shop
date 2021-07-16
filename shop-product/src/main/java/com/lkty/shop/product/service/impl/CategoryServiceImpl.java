@@ -1,10 +1,14 @@
 package com.lkty.shop.product.service.impl;
 
 import com.lkty.shop.common.po.product.po.Category;
+import com.lkty.shop.common.utils.LKTYObjectUtils;
 import com.lkty.shop.product.mapper.ICategoryMapper;
 import com.lkty.shop.product.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -17,4 +21,41 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<ICategoryMapper, Category> implements ICategoryService {
 
+    /**
+     * 获取品牌三级分类列表树
+     */
+    @Override
+    public List<Category> fetchCategoryListTrees() {
+        // 1、查出所有分类
+        List<Category> listAll = this.list();
+
+        // 2、组装成父子的树形结构
+        // 2.1、一级分类
+        List<Category> menus = listAll.stream().filter(sub -> {
+            return "0".equals(sub.getParentCid());
+        }).map(sub -> {
+            sub.setChildren(this.getCategory(sub, listAll));
+            return sub;
+        }).sorted((menu1, menu2) -> {
+            return (LKTYObjectUtils.isBlank(menu1.getSort()) ? 0 : menu1.getSort()) - (LKTYObjectUtils.isBlank(menu2.getSort()) ? 0 : menu2.getSort());
+        }).collect(Collectors.toList());
+        return menus;
+    }
+
+    /**
+     * @param root
+     * @param list
+     * @return
+     */
+    private List<Category> getCategory(Category root, List<Category> list) {
+        List<Category> childrenList = list.stream().filter(item -> {
+            return root.getId().equals(item.getParentCid());
+        }).map(sub -> {
+            sub.setChildren(getCategory(sub, list));
+            return sub;
+        }).sorted((menu1, menu2) -> {
+            return (LKTYObjectUtils.isBlank(menu1.getSort()) ? 0 : menu1.getSort()) - (LKTYObjectUtils.isBlank(menu2.getSort()) ? 0 : menu2.getSort());
+        }).collect(Collectors.toList());
+        return childrenList;
+    }
 }

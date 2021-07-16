@@ -3,6 +3,8 @@ package com.lkty.shop.common.po.product.po;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.util.ArrayList;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -10,6 +12,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -86,6 +90,9 @@ public class Category extends Model<Category> {
     @TableField(fill = FieldFill.INSERT)
     @Version
     private Integer version;
+
+    @TableField(exist = false)
+    private List<Category> children = new ArrayList<>();
 
 
     @Override

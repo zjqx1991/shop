@@ -21,7 +21,7 @@ public class Swagger2Config {
 
     private final static String API_VERSION = "1.0";
     private final static String API_AUTHOR = "RavenWang";
-    private final static String API_URL = "http://127.0.0.1:1000/doc.html";
+    private final static String API_URL = "http://127.0.0.1:20000/doc.html";
     private final static String API_AUTHOR_EMAIL = "zjqx1991@163.com";
     private final static String API_DESCRIPTION = "SHOP系统接口文档";
 //    private final static String API_BASEPACKAGE = "com.lkty.shop.api";
