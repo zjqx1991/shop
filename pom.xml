@@ -18,6 +18,7 @@
         <module>shop-ware</module>
         <module>shop-gateway</module>
         <module>shop-api</module>
+        <module>shop-third</module>
     </modules>
 
 
