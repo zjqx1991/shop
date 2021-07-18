@@ -18,7 +18,12 @@ public interface IBrandService extends IService<Brand> {
 
     Boolean saveBrand(Brand brand);
 
+    Boolean deleteBrandByBatchIds(List<String> ids);
+
+    Boolean updateBrand(Brand brand);
+
     Brand fetchBrandInfoById(String id);
 
     Page<Brand> fetchBrandList(int page, int step);
+
 }

@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.netflix.loadbalancer.RetryRule;
 import freemarker.ext.servlet.IncludePage;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -33,6 +34,22 @@ public class BrandServiceImpl extends ServiceImpl<IBrandMapper, Brand> implement
             throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
         }
         return this.save(brand);
+    }
+
+    @Override
+    public Boolean deleteBrandByBatchIds(List<String> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
+        }
+        return this.removeByIds(ids);
+    }
+
+    @Override
+    public Boolean updateBrand(Brand brand) {
+        if (LKTYObjectUtils.isBlank(brand) || LKTYObjectUtils.isBlank(brand.getId())) {
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
+        }
+        return this.updateById(brand);
     }
 
     @Override

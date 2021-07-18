@@ -32,6 +32,18 @@ public class BrandController implements IBrandApi {
     }
 
     @Override
+    public R deleteBrandByBatchIds(@RequestBody List<String> ids) {
+        Boolean delete = this.brandService.deleteBrandByBatchIds(ids);
+        return R.ok().put(R.DATA_KEY, delete);
+    }
+
+    @Override
+    public R updateBrand(@RequestBody Brand brand) {
+        Boolean update = this.brandService.updateBrand(brand);
+        return R.ok().put(R.DATA_KEY, update);
+    }
+
+    @Override
     public R fetchBrandInfoById(@PathVariable("id") String id) {
         Brand brand = this.brandService.fetchBrandInfoById(id);
         return R.ok().put(R.DATA_KEY, brand);

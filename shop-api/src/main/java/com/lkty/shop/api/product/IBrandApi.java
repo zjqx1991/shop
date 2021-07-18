@@ -27,6 +27,15 @@ public interface IBrandApi {
     @PostMapping("/save")
     R saveBrand(@RequestBody Brand brand);
 
+
+    @ApiOperation("批量删除品牌")
+    @PostMapping("/delete")
+    R deleteBrandByBatchIds(@RequestBody List<String> ids);
+
+    @ApiOperation("更新品牌")
+    @PostMapping("/update")
+    R updateBrand(@RequestBody Brand brand);
+
     @ApiOperation("获取品牌分类信息")
     @GetMapping("/info/{id}")
     R fetchBrandInfoById(@PathVariable("id") String id);
