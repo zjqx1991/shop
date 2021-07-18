@@ -7,8 +7,10 @@ import com.lkty.shop.common.po.product.po.Brand;
 import com.lkty.shop.common.utils.R;
 import com.lkty.shop.product.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class BrandController implements IBrandApi {
     private IBrandService brandService;
 
     @Override
-    public R saveBrand(@RequestBody Brand brand) {
+    public R saveBrand(@Valid @RequestBody Brand brand) {
         Boolean save = this.brandService.saveBrand(brand);
         return R.ok().put(R.DATA_KEY, save);
     }

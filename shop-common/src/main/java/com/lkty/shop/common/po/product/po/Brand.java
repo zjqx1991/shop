@@ -15,6 +15,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * <p>
  * 品牌
@@ -36,6 +38,7 @@ public class Brand extends Model<Brand> {
     private String id;
 
     @ApiModelProperty(value = "品牌名")
+    @NotBlank
     private String name;
 
     @ApiModelProperty(value = "品牌logo地址")

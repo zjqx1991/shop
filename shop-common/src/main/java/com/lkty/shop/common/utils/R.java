@@ -2,6 +2,7 @@ package com.lkty.shop.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.lkty.shop.common.code.LKTYCodeEnum;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -22,11 +23,11 @@ public class R extends HashMap<String, Object> {
 	}
 
 	public static R error() {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
+		return error(LKTYCodeEnum.PARAM_FAIL.getCode(), LKTYCodeEnum.PARAM_FAIL.getMessage());
 	}
 
 	public static R error(String msg) {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
+		return error(LKTYCodeEnum.PARAM_FAIL.getCode(), msg);
 	}
 
 	public static R error(int code, String msg) {
