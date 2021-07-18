@@ -5,7 +5,7 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.50.100:8848
-#        namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0 注册中心如果也隔离，这样就彼此无法发现 503
+      #        namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0 注册中心如果也隔离，这样就彼此无法发现 503
       config:
         namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0
         server-addr: 192.168.50.100:8848
@@ -17,9 +17,9 @@ spring:
           - dataId: datasource.yaml
             group: dev
             refresh: true
-#          - dataId: mybatisPlus.yaml
-#            group: dev_GROUP
-#            refresh: true
+          - dataId: mybatis.yaml
+            group: dev
+            refresh: true
 #          - dataId: redisConfig.yaml
 #            group: dev_GROUP
 #            refresh: true

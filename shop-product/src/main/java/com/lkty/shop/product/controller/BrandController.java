@@ -1,9 +1,15 @@
 package com.lkty.shop.product.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lkty.shop.api.product.IBrandApi;
+import com.lkty.shop.common.po.product.po.Brand;
+import com.lkty.shop.common.utils.R;
+import com.lkty.shop.product.service.IBrandService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -14,7 +20,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-07-16
  */
 @RestController
-@RequestMapping("/product/brand")
-public class BrandController {
+public class BrandController implements IBrandApi {
 
+    @Autowired
+    private IBrandService brandService;
+
+    @Override
+    public R saveBrand(@RequestBody Brand brand) {
+        Boolean save = this.brandService.saveBrand(brand);
+        return R.ok().put(R.DATA_KEY, save);
+    }
+
+    @Override
+    public R fetchBrandInfoById(@PathVariable("id") String id) {
+        Brand brand = this.brandService.fetchBrandInfoById(id);
+        return R.ok().put(R.DATA_KEY, brand);
+    }
+
+    @Override
+    public R fetchBrandList(@RequestParam(name = "page", defaultValue = "1") int page,
+                            @RequestParam(name = "size", defaultValue = "10") int step) {
+        Page<Brand> pageList = this.brandService.fetchBrandList(page, step);
+        return R.ok().put(R.DATA_KEY, pageList);
+    }
 }

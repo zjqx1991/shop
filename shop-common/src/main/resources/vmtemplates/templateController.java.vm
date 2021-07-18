@@ -1,0 +1,245 @@
+package ${package.Controller};
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+##import org.apache.logging.log4j.LogManager;
+##import org.apache.logging.log4j.Logger;
+import java.util.List;
+##import java.util.ArrayList;
+#if($swagger2)
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiImplicitParams;
+#end
+import com.met.framework.base.model.ResponseBean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import com.met.framework.common.constant.CommonResultCode;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * $!{table.comment} 前端控制器
+ * @author ${author}
+ * @date ${date}
+ * @since cloud2.0
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@Slf4j
+@RequestMapping(value ="#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end", produces = {"application/json;charset=UTF-8"})
+@PropertySource(value = {"classpath:errorcode/$!{cfg.businessName}/$!{entity.toLowerCase()}.properties"},
+        ignoreResourceNotFound = true, encoding = "utf-8")
+#if($swagger2)
+@Api(tags = "$!{table.comment}")
+#end
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+    #if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+##    private static final Logger LOGGER=LogManager.getLogger(${table.controllerName}.class);
+
+    @Autowired
+    private ${table.serviceName} targetService;
+
+    @Autowired
+    private Environment env;
+
+    /**
+     * $!{table.comment}保存数据
+     * @param ${entity.toLowerCase()}  $!{table.comment}
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @PostMapping("/save")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}保存数据", notes = "$!{table.comment}保存数据")
+    @ApiImplicitParam(required = true, name = "${entity.toLowerCase()}", value = "$!{table.comment}", dataType = "${entity}对象")
+    #end
+    public ResponseBean save(@RequestBody ${entity} ${entity.toLowerCase()}){
+            try{
+                targetService.save(${entity.toLowerCase()});
+                return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}保存数据"+CommonResultCode.SUCCESS.getMsg(),${entity.toLowerCase()});
+            }catch(Exception e){
+##                e.printStackTrace();
+                log.error("$!{table.comment}保存数据异常：",e);
+                return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}保存数据"+CommonResultCode.FAIL.getMsg());
+            }
+    }
+
+    /**
+     * $!{table.comment}分页查询
+     * @param pageIndex 页数
+     * @param step 每页数量
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @GetMapping("/getPage")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}分页查询", notes = "$!{table.comment}分页查询", response = ${entity}.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "页数", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "rows", value = "每页行数", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "${entity.toLowerCase()}", value = "$!{table.comment}", dataType = "${entity}对象")
+    })
+    #end
+    public ResponseBean getPage(@RequestParam(name = "page", defaultValue = "1") int pageIndex,
+    @RequestParam(name = "rows", defaultValue = "20") int step,${entity} ${entity.toLowerCase()}){
+          try{
+              Wrapper<${entity}> wrapper=new QueryWrapper<${entity}>();
+              Page<${entity}> page=new Page(pageIndex,step);
+              targetService.page(page,wrapper);
+              return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}分页查询 "+CommonResultCode.SUCCESS.getMsg(),page);
+              }catch(Exception e){
+##                e.printStackTrace();
+                log.error("$!{table.comment}分页查询异常：",e);
+                return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}分页查询 "+CommonResultCode.FAIL.getMsg());
+          }
+    }
+
+    /**
+     * $!{table.comment}获取全部数据
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @GetMapping("/getAll")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}获取全部数据", notes = "$!{table.comment}获取全部数据",response = ${entity}.class)
+    #end
+    public ResponseBean getAll(){
+        try{
+            List<${entity}> models=targetService.list();
+            return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}获取全部数据 "+CommonResultCode.SUCCESS.getMsg(),models);
+        }catch(Exception e){
+##            e.printStackTrace();
+            log.error("$!{table.comment}获取全部数据异常：",e);
+            return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}获取全部数据 "+CommonResultCode.FAIL.getMsg());
+        }
+    }
+
+    /**
+     * $!{table.comment}根据ID获取数据
+     * @param id 唯一编码
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @GetMapping("/get")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}根据ID获取数据", notes = "$!{table.comment}根据ID获取数据",response = ${entity}.class)
+    @ApiImplicitParam(required = true, name = "id", value = "唯一编码", dataType = "Integer")
+    #end
+    public ResponseBean get(@RequestParam("id") Integer id){
+            try{
+                 ${entity} ${entity.toLowerCase()} =targetService.getById(id);
+                 return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}根据ID获取数据"+CommonResultCode.SUCCESS.getMsg(),${entity.toLowerCase()});
+            }catch(Exception e){
+##                e.printStackTrace();
+                log.error("$!{table.comment}根据ID查找数据异常：",e);
+                return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}删除数据"+CommonResultCode.FAIL.getMsg());
+            }
+    }
+
+    /**
+     * $!{table.comment}更新数据
+     * @param ${entity.toLowerCase()}  $!{table.comment}
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @PutMapping("/update")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}更新数据", notes = "$!{table.comment}更新数据")
+    @ApiImplicitParam(required = true, name = "${entity.toLowerCase()}", value = "$!{table.comment}", dataType = "${entity}对象")
+    #end
+    public ResponseBean update(@RequestBody ${entity} ${entity.toLowerCase()}){
+        try{
+            targetService.updateById(${entity.toLowerCase()});
+            return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}更新数据"+CommonResultCode.SUCCESS.getMsg(),${entity.toLowerCase()});
+        }catch(Exception e){
+##        e.printStackTrace();
+        log.error("$!{table.comment}更新数据：",e);
+        return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}删除数据"+CommonResultCode.FAIL.getMsg());
+        }
+    }
+
+    /**
+     * $!{table.comment}删除数据
+     * @param id 唯一编码
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @DeleteMapping("/removeById")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}删除数据", notes = "$!{table.comment}删除数据")
+    @ApiImplicitParam(required = true, name = "id", value = "唯一编码", dataType = "Integer")
+    #end
+    public ResponseBean removeById(@RequestParam("id") Integer id){
+            try{
+                targetService.removeById(id);
+                return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}删除数据"+CommonResultCode.SUCCESS.getMsg());
+            }catch(Exception e){
+##                e.printStackTrace();
+                log.error("$!{table.comment}删除数据：",e);
+                return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}删除数据"+CommonResultCode.FAIL.getMsg());
+            }
+    }
+
+    /**
+     * $!{table.comment}批量删除数据
+     * @param ids 唯一编码集合
+     * @return ResponseBean
+     * @author ${author}
+     * @date ${date}
+     * @since cloud2.0
+     */
+    @DeleteMapping("/removeByIds")
+    #if(${swagger2})
+    @ApiOperation(value = "$!{table.comment}批量删除数据", notes = "$!{table.comment}批量删除数据")
+    @ApiImplicitParam(required = true, name = "ids", value = "唯一编码集合", dataType = "List<Integer>")
+    #end
+    public ResponseBean removeByIds(@RequestParam("ids") List<Integer> ids){
+            try{
+                targetService.removeByIds(ids);
+                return new ResponseBean(CommonResultCode.SUCCESS.getCode(),"$!{table.comment}批量删除数据"+CommonResultCode.SUCCESS.getMsg());
+            }catch(Exception e){
+##                e.printStackTrace();
+                log.error("$!{table.comment}批量删除数据：",e);
+                return new ResponseBean(CommonResultCode.FAIL.getCode(),"$!{table.comment}批量删除数据"+CommonResultCode.FAIL.getMsg());
+            }
+    }
+}
+#end
