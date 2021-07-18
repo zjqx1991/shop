@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 import com.lkty.shop.common.valid.ISaveValidGroup;
 import com.lkty.shop.common.valid.IUpdateValidGroup;
+import com.lkty.shop.common.valid.ListValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -60,6 +61,7 @@ public class Brand extends Model<Brand> {
     @ApiModelProperty(value = "检索首字母")
     private String firstLetter;
 
+    @ListValue(values = {0, 1}, message = "排序只能取值：0~1", groups = {ISaveValidGroup.class, IUpdateValidGroup.class})
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
