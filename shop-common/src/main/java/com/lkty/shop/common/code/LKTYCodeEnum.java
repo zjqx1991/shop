@@ -9,7 +9,7 @@ public enum LKTYCodeEnum {
     SUCCESS(true, 0, "成功"),
     TOO_MANY_REQUEST(false, 1, "请求流量过大"),
     FAIL(false, 99999, "系统错误"),
-    PARAM_FAIL(false, 400, "参数错误"),
+    PARAM_FAIL(false, 10000, "参数错误"),
     LOGIN_NOT(false, 444, "请登录"),
     PERMISSION_NOT(false, 443, "为授权"),
 
@@ -23,9 +23,9 @@ public enum LKTYCodeEnum {
     REGISTERED_FAIL(false, 30104, "用户已注册"),
 
     // 商品分类
-    PRODUCT_CATEGORY_EXIST(false, 40100, "品牌分类名称已经存在"),
+    PRODUCT_CATEGORY_EXIST(false, 20000, "品牌分类名称已经存在"),
     PRODUCT_CATEGORY_SAVE_FAIL(false, 20001, "品牌分类保存失败"),
-    PRODUCT_CATEGORY_UPDATE_FAIL(false, 40102, "品牌分类更新失败"),
+    PRODUCT_CATEGORY_UPDATE_FAIL(false, 20002, "品牌分类更新失败"),
 
     // 品牌
     PRODUCT_BRAND_EXIST(false, 40200, "品牌名称已经存在"),

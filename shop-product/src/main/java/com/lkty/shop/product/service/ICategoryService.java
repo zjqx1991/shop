@@ -22,6 +22,12 @@ public interface ICategoryService extends IService<Category> {
     Category saveCategory(Category category);
 
     /**
+     * 批量删除品牌分类
+     * @param ids 分类id
+     */
+    Boolean deleteCategoryByBatchIds(List<String> ids);
+
+    /**
      * 获取品牌三级分类列表树
      */
     List<Category> fetchCategoryListTrees();

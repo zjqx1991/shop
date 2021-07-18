@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 /**
@@ -35,6 +36,16 @@ public class CategoryController implements ICategoryApi {
     public R saveCategory(@RequestBody Category category) {
         Category ct = this.categoryService.saveCategory(category);
         return R.ok().put(R.DATA_KEY, ct);
+    }
+
+    /**
+     * 批量删除品牌分类
+     * @param ids 分类id
+     */
+    @Override
+    public R deleteCategoryByBatchIds(@RequestBody List<String> ids) {
+        Boolean batchIds = this.categoryService.deleteCategoryByBatchIds(ids);
+        return R.ok().put(R.DATA_KEY, batchIds);
     }
 
     /**

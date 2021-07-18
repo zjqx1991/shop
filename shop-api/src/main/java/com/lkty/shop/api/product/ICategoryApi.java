@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * <p>
  * 商品三级分类 前端控制器
@@ -26,6 +28,10 @@ public interface ICategoryApi {
     @ApiOperation("保存品牌分类")
     @PostMapping("save")
     R saveCategory(@RequestBody Category category);
+
+    @ApiOperation("批量删除品牌分类")
+    @PostMapping("delete")
+    R deleteCategoryByBatchIds(@RequestBody List<String> ids);
 
 
     @ApiOperation("获取品牌三级分类列表树")

@@ -3,9 +3,7 @@ package com.lkty.shop.common.handler;
 import com.lkty.shop.common.exception.LKTYException;
 import com.lkty.shop.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**

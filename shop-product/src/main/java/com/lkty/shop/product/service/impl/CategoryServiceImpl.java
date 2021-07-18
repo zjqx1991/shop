@@ -8,7 +8,9 @@ import com.lkty.shop.product.mapper.ICategoryMapper;
 import com.lkty.shop.product.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,13 +32,26 @@ public class CategoryServiceImpl extends ServiceImpl<ICategoryMapper, Category> 
     @Override
     public Category saveCategory(Category category) {
         if (LKTYObjectUtils.isBlank(category) || !LKTYObjectUtils.isBlank(category.getId())) {
-            throw new LKTYException(LKTYCodeEnum.PRODUCT_CATEGORY_SAVE_FAIL);
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
         }
         boolean save = this.save(category);
         if (!save) {
             throw new LKTYException(LKTYCodeEnum.PRODUCT_CATEGORY_SAVE_FAIL);
         }
         return category;
+    }
+
+    /**
+     * 批量删除品牌分类
+     *
+     * @param ids 分类id
+     */
+    @Override
+    public Boolean deleteCategoryByBatchIds(List<String> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
+        }
+        return this.removeByIds(ids);
     }
 
     /**
