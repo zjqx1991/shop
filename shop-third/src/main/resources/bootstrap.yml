@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: shop-third
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.50.100:8848
+      #        namespace: fa52b827-a05c-4678-8c0a-6769df08f7a0 注册中心如果也隔离，这样就彼此无法发现 503
+      config:
+        namespace: 757290db-8a53-4778-8cb4-35986d26b520
+        server-addr: 192.168.50.100:8848
+        file-extension: yaml
+        extension-configs:
+          - dataId: system.yaml
+            group: dev
+            refresh: true
+          - dataId: oss.yaml
+            group: dev
+            refresh: true
+#          - dataId: mybatisPlus.yaml
+#            group: dev_GROUP
+#            refresh: true
+#          - dataId: redisConfig.yaml
+#            group: dev_GROUP
+#            refresh: true
+#          - dataId: cacheConfig.yaml
+#            group: dev_GROUP
+#            refresh: true
+#          - dataId: threadPoolCongif.yaml
+#            group: dev_GROUP
+#            refresh: true
+#          - dataId: sentinel.yaml
+#            group: dev_GROUP
+#            refresh: true

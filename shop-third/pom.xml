@@ -8,8 +8,35 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>shop-third</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.lkty.shop</groupId>
+            <artifactId>shop-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- OSS 图片存储 -->
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun.oss</groupId>-->
+<!--            <artifactId>aliyun-sdk-oss</artifactId>-->
+<!--            <version>3.10.2</version>-->
+<!--        </dependency>-->
+        <!--阿里OSS-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+    </dependencies>
 
+<!--    用户登录名称 lkty-shop@gootschool.onaliyun.com-->
+<!--    AccessKey ID -->
+<!--    AccessKey Secret -->
 </project>
