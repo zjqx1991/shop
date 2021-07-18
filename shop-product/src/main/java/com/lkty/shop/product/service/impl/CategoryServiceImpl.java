@@ -1,5 +1,7 @@
 package com.lkty.shop.product.service.impl;
 
+import com.lkty.shop.common.code.LKTYCodeEnum;
+import com.lkty.shop.common.exception.LKTYException;
 import com.lkty.shop.common.po.product.po.Category;
 import com.lkty.shop.common.utils.LKTYObjectUtils;
 import com.lkty.shop.product.mapper.ICategoryMapper;
@@ -21,6 +23,22 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<ICategoryMapper, Category> implements ICategoryService {
 
+
+    /**
+     * 保存品牌分类
+     */
+    @Override
+    public Category saveCategory(Category category) {
+        if (LKTYObjectUtils.isBlank(category) || !LKTYObjectUtils.isBlank(category.getId())) {
+            throw new LKTYException(LKTYCodeEnum.PRODUCT_CATEGORY_SAVE_FAIL);
+        }
+        boolean save = this.save(category);
+        if (!save) {
+            throw new LKTYException(LKTYCodeEnum.PRODUCT_CATEGORY_SAVE_FAIL);
+        }
+        return category;
+    }
+
     /**
      * 获取品牌三级分类列表树
      */
@@ -41,6 +59,7 @@ public class CategoryServiceImpl extends ServiceImpl<ICategoryMapper, Category> 
         }).collect(Collectors.toList());
         return menus;
     }
+
 
     /**
      * @param root

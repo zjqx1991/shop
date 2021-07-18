@@ -6,6 +6,7 @@ import com.lkty.shop.common.po.product.po.Category;
 import com.lkty.shop.common.utils.R;
 import com.lkty.shop.product.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,16 @@ public class CategoryController implements ICategoryApi {
     @Autowired
     private ICategoryService categoryService;
 
+
+    /**
+     * 保存品牌分类
+     */
+    @Override
+    public R saveCategory(@RequestBody Category category) {
+        Category ct = this.categoryService.saveCategory(category);
+        return R.ok().put(R.DATA_KEY, ct);
+    }
+
     /**
      * 获取品牌三级分类列表树
      */
@@ -34,4 +45,5 @@ public class CategoryController implements ICategoryApi {
         List<Category> categoryList = this.categoryService.fetchCategoryListTrees();
         return R.ok().put(R.DATA_KEY, categoryList);
     }
+
 }

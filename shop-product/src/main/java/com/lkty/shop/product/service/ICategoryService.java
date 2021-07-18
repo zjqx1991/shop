@@ -15,8 +15,15 @@ import java.util.List;
  */
 public interface ICategoryService extends IService<Category> {
 
+
+    /**
+     * 保存品牌分类
+     */
+    Category saveCategory(Category category);
+
     /**
      * 获取品牌三级分类列表树
      */
     List<Category> fetchCategoryListTrees();
+
 }
