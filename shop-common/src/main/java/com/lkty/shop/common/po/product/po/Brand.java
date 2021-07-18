@@ -10,12 +10,17 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.lkty.shop.common.valid.ISaveValidGroup;
+import com.lkty.shop.common.valid.IUpdateValidGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 /**
  * <p>
@@ -35,10 +40,12 @@ public class Brand extends Model<Brand> {
 
     @ApiModelProperty(value = "品牌id")
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @Null(message = "保存时id必须为空", groups = {ISaveValidGroup.class})
+    @NotNull(message = "更新时不能为空", groups = {IUpdateValidGroup.class})
     private String id;
 
     @ApiModelProperty(value = "品牌名")
-    @NotBlank
+    @NotBlank(message = "不能为空", groups = {ISaveValidGroup.class, IUpdateValidGroup.class})
     private String name;
 
     @ApiModelProperty(value = "品牌logo地址")

@@ -33,7 +33,7 @@ public class GlobalExceptionAdvice {
                 map.put(error.getField(), error.getDefaultMessage());
             }
         });
-        log.error("MethodArgumentNotValidException", map);
+        log.error("MethodArgumentNotValidException: {}", map);
 
         return R.error().put(R.DATA_KEY, map);
     }
@@ -47,7 +47,7 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler(Throwable.class)
     public R error(Throwable e) {
-        log.error("Throwable", e);
+        log.error("Throwable {}", e);
         return R.error(e.getMessage());
     }
 }

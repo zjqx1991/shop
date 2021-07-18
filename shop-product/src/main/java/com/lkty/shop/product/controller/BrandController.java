@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lkty.shop.api.product.IBrandApi;
 import com.lkty.shop.common.po.product.po.Brand;
 import com.lkty.shop.common.utils.R;
+import com.lkty.shop.common.valid.ISaveValidGroup;
+import com.lkty.shop.common.valid.IUpdateValidGroup;
 import com.lkty.shop.product.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,7 +31,7 @@ public class BrandController implements IBrandApi {
     private IBrandService brandService;
 
     @Override
-    public R saveBrand(@Valid @RequestBody Brand brand) {
+    public R saveBrand(@Validated({ISaveValidGroup.class}) @RequestBody Brand brand) {
         Boolean save = this.brandService.saveBrand(brand);
         return R.ok().put(R.DATA_KEY, save);
     }
@@ -40,7 +43,7 @@ public class BrandController implements IBrandApi {
     }
 
     @Override
-    public R updateBrand(@RequestBody Brand brand) {
+    public R updateBrand(@Validated({IUpdateValidGroup.class}) @RequestBody Brand brand) {
         Boolean update = this.brandService.updateBrand(brand);
         return R.ok().put(R.DATA_KEY, update);
     }
