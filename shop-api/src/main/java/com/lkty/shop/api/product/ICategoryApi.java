@@ -5,10 +5,7 @@ import com.lkty.shop.common.po.product.po.Category;
 import com.lkty.shop.common.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,12 +23,20 @@ public interface ICategoryApi {
 
 
     @ApiOperation("保存品牌分类")
-    @PostMapping("save")
+    @PostMapping("/save")
     R saveCategory(@RequestBody Category category);
 
     @ApiOperation("批量删除品牌分类")
-    @PostMapping("delete")
+    @PostMapping("/delete")
     R deleteCategoryByBatchIds(@RequestBody List<String> ids);
+
+    @ApiOperation("更新品牌分类")
+    @PostMapping("/update")
+    R updateCategory(@RequestBody Category category);
+
+    @ApiOperation("获取品牌分类信息")
+    @GetMapping("/info/{id}")
+    R fetchCategoryInfoById(@PathVariable("id") String id);
 
 
     @ApiOperation("获取品牌三级分类列表树")

@@ -28,6 +28,16 @@ public interface ICategoryService extends IService<Category> {
     Boolean deleteCategoryByBatchIds(List<String> ids);
 
     /**
+     * 更新品牌分类
+     */
+    Boolean updateCategory(Category category);
+
+    /**
+     * 获取品牌分类信息
+     */
+    Category fetchCategoryInfoById(String id);
+
+    /**
      * 获取品牌三级分类列表树
      */
     List<Category> fetchCategoryListTrees();

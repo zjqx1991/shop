@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan(value = {"com.lkty.shop.product", "com.lkty.shop.common.swagger"})
+@ComponentScan(value = {"com.lkty.shop.product", "com.lkty.shop.common"})
 public class ShopProductApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShopProductApplication.class, args);

@@ -55,6 +55,28 @@ public class CategoryServiceImpl extends ServiceImpl<ICategoryMapper, Category> 
     }
 
     /**
+     * 更新品牌分类
+     */
+    @Override
+    public Boolean updateCategory(Category category) {
+        if (LKTYObjectUtils.isBlank(category) || LKTYObjectUtils.isBlank(category.getId())) {
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
+        }
+        return this.updateById(category);
+    }
+
+    /**
+     * 更新品牌分类
+     */
+    @Override
+    public Category fetchCategoryInfoById(String id) {
+        if (LKTYObjectUtils.isBlank(id)) {
+            throw new LKTYException(LKTYCodeEnum.PARAM_FAIL);
+        }
+        return this.getById(id);
+    }
+
+    /**
      * 获取品牌三级分类列表树
      */
     @Override

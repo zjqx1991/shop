@@ -6,6 +6,7 @@ import com.lkty.shop.common.po.product.po.Category;
 import com.lkty.shop.common.utils.R;
 import com.lkty.shop.product.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,6 +47,18 @@ public class CategoryController implements ICategoryApi {
     public R deleteCategoryByBatchIds(@RequestBody List<String> ids) {
         Boolean batchIds = this.categoryService.deleteCategoryByBatchIds(ids);
         return R.ok().put(R.DATA_KEY, batchIds);
+    }
+
+    @Override
+    public R updateCategory(@RequestBody Category category) {
+        Boolean isUpdate = this.categoryService.updateCategory(category);
+        return R.ok().put(R.DATA_KEY, isUpdate);
+    }
+
+    @Override
+    public R fetchCategoryInfoById(@PathVariable("id") String id) {
+        Category category = this.categoryService.fetchCategoryInfoById(id);
+        return R.ok().put(R.DATA_KEY, category);
     }
 
     /**
